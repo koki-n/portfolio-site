@@ -5,13 +5,12 @@
         <h1>Koki Nishida</h1>
         <nav>
           <ul class="flex justify">
-            <li class="header-item"><a href="">profile</a></li>
-            <li class="header-item"><a href="">portfolio</a></li>
-            <v-hover v-slot:default="{ hover }">
-              <li class="header-item">
-                <a :elevation="hover ? 12 : 2" href="#contact">contact</a>
-              </li>
-            </v-hover>
+            <li class="header-item" @click="scrollTop('profile')">profile</li>
+            <li class="header-item" @click="scrollTop('portfolio')">
+              portfolio
+            </li>
+
+            <li class="header-item" @click="scrollTop('contact')">contact</li>
           </ul>
         </nav>
       </header>
@@ -21,7 +20,7 @@
         <div class="git"><a href="">GitHub</a></div> -->
       </div>
     </section>
-    <section class="profile">
+    <section id="profile" class="profile">
       <h1 class="ttl">Profile</h1>
       <div class="line"></div>
       <div class="flex">
@@ -44,7 +43,7 @@
         </div>
       </div>
     </section>
-    <section class="portfolio">
+    <section id="portfolio" class="portfolio">
       <h2 class="ttl">Portfolio</h2>
       <div class="flex">
         <div class="portfolio-item">
@@ -77,17 +76,35 @@
         </a>
       </div>
     </section>
-    <v-hober>test</v-hober>
   </div>
 </template>
 <script>
 export default {
-  data() {},
+  data() {
+    return {};
+  },
+  methods: {
+    scrollTop(elem) {
+      // const target = document.getElementById(elem);
+      console.log(elem);
+
+      let test = document.querySelector("#" + elem);
+      console.log(test);
+      const a = test.offsetTop;
+      window.scrollTo({
+        top: a,
+        behavior: "smooth",
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 /* 共通 */
+html {
+  scroll-behavior: smooth;
+}
 p {
   margin: 0;
   padding: 0;
